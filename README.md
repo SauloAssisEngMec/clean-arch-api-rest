@@ -23,11 +23,3 @@ O uso da herança permite:
 
 - Garantir que todas as entidades tenham uma estrutura uniforme.
 - Introduzir novas funcionalidades facilmente, como validações, métodos utilitários ou comportamentos comuns.
-
-## CI
-
-workflow pra unit test
-
-1 criar .github/workflows/files
-2 setar actions pra checkout onde sobe maqui ubuntu ( ver em github marketplace)
-3 setar aciotns de node enviromnet( ver em github marketplace)
