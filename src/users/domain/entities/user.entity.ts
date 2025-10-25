@@ -28,16 +28,18 @@ export class UserEntity extends Entity<UserProps> {
         return this.props.name;
     }
 
-    set name(name: string) {
+    private set name(name: string) {
         this.props.name = name;
     }
+
     get email(): string {
         return this.props.email;
     }
     get password(): string {
         return this.props.password;
     }
-    set password(password: string) {
+    
+   private  set password(password: string) {
         this.props.password = password;
     }
 
