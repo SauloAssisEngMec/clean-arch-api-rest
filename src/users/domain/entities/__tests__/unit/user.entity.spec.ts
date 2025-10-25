@@ -23,6 +23,12 @@ describe('UserEntity', () => {
         expect(typeof sut.name).toBe('string');
     });
 
+    it('setters of name field', () => {
+        sut['name'] = 'New Name';
+        expect(sut.name).toEqual('New Name');
+        expect(typeof sut.name).toBe('string');
+    });
+
     it('getter of email field', () => {
         expect(sut.email).toBeDefined();
         expect(sut.email).toEqual(userProps.email);
@@ -32,6 +38,12 @@ describe('UserEntity', () => {
     it('getter of password field', () => {
         expect(sut.password).toBeDefined();
         expect(sut.password).toEqual(userProps.password);
+        expect(typeof sut.password).toBe('string');
+    });
+
+    it('setters of password field', () => {
+        sut['password'] = 'NewPassword123';
+        expect(sut.password).toEqual('NewPassword123');
         expect(typeof sut.password).toBe('string');
     });
 
