@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto';
+import { randomUUID as uuid4 } from 'crypto';
 
 type EntityJSON<Props> = Required<{ id: string } & Props>;
 
@@ -7,7 +7,7 @@ export abstract class Entity<Props = any> {
     public readonly props: Props;
 
     constructor(props: Props, id?: string) {
-        this._id = id || randomUUID();
+        this._id = id || uuid4();
         this.props = props;
     }
 
