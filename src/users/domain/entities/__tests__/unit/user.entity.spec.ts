@@ -51,4 +51,15 @@ describe('UserEntity', () => {
         expect(sut.createdAt).toBeDefined();
         expect(sut.createdAt).toBeInstanceOf(Date);
     });
+
+    it('should update the name using updateName method', () => {
+        const newName = 'Updated Name';
+        sut.updateName(newName);
+        expect(sut.name).toEqual(newName);
+    });
+
+    it('should update the passsword using updatePassword method', () => {
+        sut.updatePassword('UpdatedPassword123');
+        expect(sut.password).toEqual('UpdatedPassword123');
+    });
 });
