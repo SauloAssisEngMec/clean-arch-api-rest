@@ -41,4 +41,17 @@ describe('ClassValidatorFields Integration Tests', () => {
             ],
         });
     });
+
+    it('should validate with corrects value', () => {
+        const validator = new StubClassValidatorFileds();
+
+        expect(
+            validator.validate({ name: 'saulo assis', price: 28 }),
+        ).toBeTruthy();
+        expect(validator.errors).toStrictEqual(null);
+        expect(validator.validatedData).toStrictEqual({
+            name: 'saulo assis',
+            price: 28,
+        });
+    });
 });
