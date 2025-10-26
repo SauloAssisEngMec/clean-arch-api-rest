@@ -49,9 +49,11 @@ describe('ClassValidatorFields Integration Tests', () => {
             validator.validate({ name: 'saulo assis', price: 28 }),
         ).toBeTruthy();
         expect(validator.errors).toStrictEqual(null);
-        expect(validator.validatedData).toStrictEqual({
-            name: 'saulo assis',
-            price: 28,
-        });
+        expect(validator.validatedData).toStrictEqual(
+            new StubRules({
+                name: 'saulo assis',
+                price: 28,
+            }),
+        );
     });
 });
