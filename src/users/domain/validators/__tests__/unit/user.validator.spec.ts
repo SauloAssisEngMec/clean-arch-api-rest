@@ -20,12 +20,37 @@ describe('UserValidator Unit  Tests', () => {
             ]);
         });
 
-        it('should validate with errors for empt name params', () => {
+        it('should validate with errors for empty name params', () => {
             const isValid = sut.validate({ ...userDataBuilder({}), name: '' });
 
             expect(isValid).toBeFalsy();
             expect(sut.errors['name']).toStrictEqual([
                 'name should not be empty',
+            ]);
+        });
+
+        it('should validate with errors for number name params', () => {
+            const isValid = sut.validate({
+                ...userDataBuilder({}),
+                name: 10 as any,
+            });
+
+            expect(isValid).toBeFalsy();
+            expect(sut.errors['name']).toStrictEqual([
+                'name must be a string',
+                'name must be shorter than or equal to 255 characters',
+            ]);
+        });
+
+        it('should validate with errors for number name params', () => {
+            const isValid = sut.validate({
+                ...userDataBuilder({}),
+                name: 'saulo'.repeat(100),
+            });
+
+            expect(isValid).toBeFalsy();
+            expect(sut.errors['name']).toStrictEqual([
+                'name must be shorter than or equal to 255 characters',
             ]);
         });
     });
