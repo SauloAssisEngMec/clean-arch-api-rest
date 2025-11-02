@@ -106,4 +106,33 @@ describe('UserValidator Unit  Tests', () => {
             ]);
         });
     });
+
+    describe('Password field', () => {
+        it('Invalidation cases for password field', () => {
+            let isValidPassword = sut.validate(null as any);
+
+            expect(isValidPassword).toBeFalsy();
+            expect(sut.errors['password']).toStrictEqual([
+                'password should not be empty',
+                'password must be a string',
+                'password must be shorter than or equal to 50 characters',
+            ]);
+
+            isValidPassword = sut.validate({
+                ...userDataBuilder({}),
+                password: '',
+            });
+            expect(sut.errors['password']).toStrictEqual([
+                'password should not be empty',
+            ]);
+
+            isValidPassword = sut.validate({
+                ...userDataBuilder({}),
+                password: '123'.repeat(20),
+            });
+            expect(sut.errors['password']).toStrictEqual([
+                'password must be shorter than or equal to 50 characters',
+            ]);
+        });
+    });
 });
