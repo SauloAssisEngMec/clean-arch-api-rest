@@ -68,4 +68,42 @@ describe('UserValidator Unit  Tests', () => {
             ]);
         });
     });
+
+    describe('Email field', () => {
+        it('Inavlidation cases for email field', () => {
+            let isValidEmail = sut.validate(null as any);
+
+            expect(isValidEmail).toBeFalsy();
+            expect(sut.errors['email']).toStrictEqual([
+                'email should not be empty',
+                'email must be an email',
+                'email must be a string',
+                'email must be shorter than or equal to 255 characters',
+            ]);
+
+            isValidEmail = sut.validate({ ...userDataBuilder({}), email: '' });
+            expect(sut.errors['email']).toStrictEqual([
+                'email should not be empty',
+                'email must be an email',
+            ]);
+
+            isValidEmail = sut.validate({
+                ...userDataBuilder({}),
+                email: 'invalid-email',
+            });
+            expect(sut.errors['email']).toStrictEqual([
+                'email must be an email',
+            ]);
+
+            isValidEmail = sut.validate({
+                ...userDataBuilder({}),
+                email: 123 as any,
+            });
+            expect(sut.errors['email']).toStrictEqual([
+                'email must be an email',
+                'email must be a string',
+                'email must be shorter than or equal to 255 characters',
+            ]);
+        });
+    });
 });
